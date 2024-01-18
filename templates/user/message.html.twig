@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p class="h1 text-center mt-5">Message(s) utilisateur</p>
+    <hr/>
+
+    <table class="table table-hover table-dark table-responsive">
+    <thead>
+    <tr>
+    <th>#</th>
+    <th>message</th>
+    <th>supprimer</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for message in messages %} 
+    <tr class="message">
+      <td>{{ message.id }}</td>
+      <td>{{ message.content|slice(0, 10) }} ...</td>
+      <td>
+      <a href="{{ path('app_message_delete', {'id': message.id}) }}" class="delete-message">
+      <i class="text-danger fa-solid fa-trash"></i>
+      </a>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+  <script>
+function onClickDelete(event) {
+  event.preventDefault();
+  const url = this.href;
+    // Requêter un message avec un ID afin de le supprimer.
+axios.post(url)
+  .then(function (response) {
+    if(response.status == 200){
+    const message = document.querySelector('.message');
+    message.remove();
+    winndow.confirm(response.data);
+    // en cas de réussite de la requête
+    console.log(response.data); 
+    }
+  })
+  .catch(function (error) {
+    // en cas d’échec de la requête
+    console.log('un probleme est survenue veuillez actualiser la page');
+  })
+  .finally(function () {
+    // dans tous les cas
+  });
+}
+
+document.querySelectorAll('a.delete-message').forEach(function (link) {
+  link.addEventListener('click', onClickDelete);
+});
+    </script>
+{% endblock %}

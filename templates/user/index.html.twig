@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<div class="text-center">
+<p class="h1 text-center mt-5">Dashboard</p>
+<hr/>
+      <button class="btn btn-secondary">
+          <a class="nav-link" aria-current="page" href="{{ path('app_user_dashboard') }}">Users</a>
+        </button>
+        <hr/>
+        <button class="btn btn-primary">
+          <a class="nav-link" aria-current="page" href="{{ path('app_message_dashboard') }}">Message</a>
+        </button>
+</div>
+{% endblock %}

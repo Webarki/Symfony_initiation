@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+<p class="h1 text-center mt-5">Contact</p>
+{% if app.user %}
+<a href="{{ path('app_user_message', {'id': app.user.id}) }}"><button class="btn btn-secondary">Mes messages</button></a>
+{% endif %}
+<hr/>
+{{ form(form) }}
+{% endblock %}

@@ -1,0 +1,18 @@
+{%  extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+<p class="h1 text-center mt-5">Modifier votre avatar</p>
+<hr/>
+{{ form(form) }}
+<small>Nous n'accepton que les image sous format webp veuillez convertir vos images via ce  <a href="https://convertio.co/fr/png-webp/" target="_blank">site</a></small>
+{% for message in app.flashes('success') %}
+<div class="alert alert-success">
+<p>{{ message }}</p>
+</div>
+{% endfor %}
+{% for message in app.flashes('eroor') %}
+<div class="alert alert-danger">
+<p>{{ message }}</p>
+</div>
+{% endfor %}
+{% endblock %}

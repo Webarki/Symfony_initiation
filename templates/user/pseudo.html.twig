@@ -1,0 +1,13 @@
+{%  extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+<p class="h1 text-center mt-5">Modifier votre pseudo</p>
+<hr/>
+{{ form(form) }}
+
+{% for message in app.flashes('success') %}
+<div class="alert alert-success">
+<p>{{ message }}</p>
+</div>
+{% endfor %}
+{% endblock %}

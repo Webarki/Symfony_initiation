@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserModifPass!{% endblock %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+<p class="h1 mt-5 text-center">Modifier mon mot de passe</p>
+<hr/>
+{{ form(form) }}
+{% for message in app.flashes('success') %}
+<div class="alert alert-success">
+<p>{{ message }}</p>
+</div>
+{% endfor %}
+
+{% for message in app.flashes('error') %}
+<div class="alert alert-danger">
+<p>{{ message }}</p>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path('app_home') }}">Accueil</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      {% if not app.user %}
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('app_register') }}">S'inscrire</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('app_login') }}">Se connecter</a>
+        </li>
+        {% else %}
+        {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('app_dashboard') }}">DASHBOARD</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('app_user_account', {'id':app.user.id }) }}">mon profil <i class="fa-solid fa-gear"></i></a>
+        </li>
+        {% endif %}
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ path('app_contact') }}">Contact</a>
+        </li>
+      </ul>
+          {% if app.user %}
+          <div class="nav-item me-5">
+            Vous êtes connecter en tant que
+            
+            {% if app.user.pseudo != null %}
+            {{ app.user.pseudo }}
+            {% else %}
+             {{ app.user.userIdentifier }}
+            {% endif %}
+             ,<a href="{{ path('app_logout') }}"><button class="btn btn-outline-danger btn-sm">Se déconnecter</button></a>
+        </div>
+    {% endif %}
+    </div>
+  </div>
+</nav>
